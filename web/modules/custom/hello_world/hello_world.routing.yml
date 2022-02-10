@@ -1,0 +1,19 @@
+hello_world.node_pages:
+  path: '/hello/{node}'
+  defaults:
+    _title: "Andrew's Hello route"
+    _entity_view: 'node.full'
+  requirements:
+    _permission: 'TRUE'
+  options:
+    parameters:
+      node:
+        type: entity:node
+
+hello_world.hello:
+  path: '/hello'
+  defaults:
+    _controller: Drupal\hello_world\Controller\HelloWorldController::helloWorld
+    _title: 'The hello route'
+  requirements:
+    _permission: 'access content'

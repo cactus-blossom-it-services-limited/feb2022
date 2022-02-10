@@ -1,0 +1,29 @@
+version: '3.6'
+services:
+  chromedriver:
+    container_name: ddev-${DDEV_SITENAME}-chromedriver
+    # Use the Docker image that the Drupal.org test bot uses.
+    image: drupalci/chromedriver:production
+    labels:
+      # Make sure ddev can discover the service.
+      com.ddev.site-name: ${DDEV_SITENAME}
+      com.ddev.approot: $DDEV_APPROOT
+      com.ddev.app-url: $DDEV_URL
+  # This links the Chromedriver service to the web service defined
+  # in the main docker-compose.yml, allowing applications running
+  # in the web service to access the driver at `chromedriver`.
+  web:
+    volumes:
+      # If you run tests in PhpStorm with code coverage reports this
+      # is where they are stored.
+      - ../coverage:/opt/phpstorm-coverage
+    links:
+      - chromedriver:$DDEV_HOSTNAME
+    environment:
+      # PHPUnit configuration could also be done via phpunit.xml.
+      SYMFONY_DEPRECATIONS_HELPER: weak
+      SIMPLETEST_DB: mysql://db:db@db:3306/db
+      SIMPLETEST_BASE_URL: http://web
+      BROWSERTEST_OUTPUT_DIRECTORY: /var/www/html/private/browsertest_output
+      BROWSERTEST_OUTPUT_BASE_URL: $DDEV_PRIMARY_URL
+      MINK_DRIVER_ARGS_WEBDRIVER: '["chrome", {"browserName":"chrome","chromeOptions":{"args":["--disable-gpu","--headless", "--no-sandbox"]}}, "http://chromedriver:9515"]'

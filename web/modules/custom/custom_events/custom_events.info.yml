@@ -1,0 +1,5 @@
+name: 'Custom Events'
+type: module
+description: 'Custom, example event work, from drupal.org'
+package: 'Custom'
+core_version_requirement: ^8 || ^9

@@ -7,12 +7,14 @@ web/sites/example.sites.php
 web/sites/example.settings.local.php
 web/sites/development.services.yml
 web/themes/README.txt
+web/sites/simpletest
 /vendor
-/.csslintrc
+web/.csslintrc
 /.editorconfig
-/.eslintignore
-/.eslintrc.json
+web/.eslintignore
+web/.eslintrc.json
 /.gitattributes
+/.idea
 # /.htaccess
 # /autoload.php
 # /composer.json
@@ -24,3 +26,5 @@ web/themes/README.txt
 # /robots.txt
 # /update.php
 # /web.config
+web/modules/contrib/webform
+web/modules/contrib/devel
