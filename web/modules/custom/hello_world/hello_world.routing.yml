@@ -17,3 +17,10 @@ hello_world.hello:
     _title: 'The hello route'
   requirements:
     _permission: 'access content'
+
+hello_world.invoke:
+  path: '/invoke'
+  defaults:
+    _controller: hello_world.invoke_controller
+  requirements:
+    _permission: 'TRUE'
